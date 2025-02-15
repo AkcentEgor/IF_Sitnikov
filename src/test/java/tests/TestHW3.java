@@ -88,7 +88,6 @@ public class TestHW3 extends WebHooks {
         new TasksPage()
                 .searchTask(nameTask)
                 .checkStatusTask();
-        List<String> statusTask = new OneTaskPage().checkStatusTask();
         new TasksPage()
                 .initCreateTask()
                 .createNewBug(themeBugText, descpiption)
