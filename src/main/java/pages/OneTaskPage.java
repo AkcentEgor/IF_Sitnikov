@@ -1,7 +1,6 @@
 package pages;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
 import java.time.Duration;
@@ -26,13 +25,13 @@ public class OneTaskPage {
         workButton.shouldBe(Condition.visible, Duration.ofSeconds(10))
                 .click();
         statusTask.shouldHave(text("В РАБОТЕ"));
-        return Selenide.page(OneTaskPage.class);
+        return this;
     }
 
     public OneTaskPage doneBusinessTask() {
         businessButton.click();
         doneButton.click();
         statusTask.shouldHave(text("ГОТОВО"));
-        return Selenide.page(OneTaskPage.class);
+        return this;
     }
 }

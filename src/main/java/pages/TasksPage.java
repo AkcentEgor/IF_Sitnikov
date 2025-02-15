@@ -15,7 +15,7 @@ public class TasksPage {
     private final SelenideElement createButton = $x("//a[@id='create_link']").as("Кнопка 'Создать'");
     private final SelenideElement newTask = $x("//ol[@class='issue-list']/li[1]/a").as("Новая задача в списке");
     private final SelenideElement searchInput = $x("//input[@id='quickSearchInput']").as("Поле для ввода 'Поиск'");
-    private final SelenideElement newBug = $x("//*[@id='aui-flag-container']/div/div/a").as("Поле для ввода 'Поиск'");
+    private final SelenideElement newBug = $x("//*[@id='aui-flag-container']/div/div/a").as("Номер бага в всплывающем окне");
     private final SelenideElement loadPage = $x("//*[@id='jira']").as("Загрузка страницы");
 
     public CreateTaskPage initCreateTask() {
@@ -29,11 +29,6 @@ public class TasksPage {
         return headTaskPage.isDisplayed();
     }
 
-//        public int countTasksMethod() {
-//        String countTasksText = countTasks.getText();
-//        return Integer.parseInt(countTasksText.split(" ")[2]);
-//    }
-
     public String countTasksMethod() {
         return countTasks.getText();
     }
@@ -43,7 +38,7 @@ public class TasksPage {
         loadPage.shouldBe(Condition.visible, Duration.ofSeconds(10));
         newTask.shouldBe(Condition.visible, Duration.ofSeconds(10));
         Selenide.refresh();
-        return Selenide.page(TasksPage.class);
+        return this;
     }
 
     public OneTaskPage searchTask(String nameTask) {
