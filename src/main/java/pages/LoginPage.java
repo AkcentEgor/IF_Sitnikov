@@ -4,6 +4,8 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.$x;
 
 public class LoginPage {
@@ -13,11 +15,18 @@ public class LoginPage {
     private final SelenideElement loginButton = $x("//input[@name='login']").as("Кнопка 'Войти'");
 
     public MainPage authMethods(String login, String password) {
-        loginInput.shouldBe(Condition.visible)
-                .setValue(login);
-        passwordInput.shouldBe(Condition.visible)
-                .setValue(password);
-        loginButton.click();
+        setFieldCredential(login, password);
+        pressLoginButton();
         return Selenide.page(MainPage.class);
+    }
+
+    public void setFieldCredential(String login, String password) {
+        loginInput.shouldBe(Condition.visible, Duration.ofSeconds(10))
+                .setValue(login);
+        passwordInput.setValue(password);
+    }
+
+    public void pressLoginButton() {
+        loginButton.click();
     }
 }

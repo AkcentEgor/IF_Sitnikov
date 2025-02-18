@@ -4,6 +4,8 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 
+import java.time.Duration;
+
 import static com.codeborne.selenide.Selenide.$x;
 
 public class MainPage {
@@ -13,13 +15,21 @@ public class MainPage {
     private static final SelenideElement userProfile = $x("//a[@id='header-details-user-fullname']").as("Иконка профиля");
 
     public TasksPage moveTasksPage() {
-        projectButton.click();
-        testButton.click();
+        pressProjectButton();
+        pressTestButton();
         return Selenide.page(TasksPage.class);
     }
 
+    public void pressProjectButton() {
+        projectButton.click();
+    }
+
+    public void pressTestButton() {
+        testButton.click();
+    }
+
     public static Boolean checkUserProfile() {
-        userProfile.shouldBe(Condition.visible);
+        userProfile.shouldBe(Condition.visible, Duration.ofSeconds(10));
         return userProfile.isDisplayed();
     }
 }
