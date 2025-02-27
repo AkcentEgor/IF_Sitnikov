@@ -10,22 +10,15 @@ public class MortyApi extends BaseMortyApi {
     public ValidatableResponse getCharacterByNameResponse(String name) {
         return given()
                 .when()
-                .queryParam(ConfigReader.getProperty("morty_character_json_key_name"), name)
-                .get(ConfigReader.getProperty("morty_endpoint_character"))
+                .queryParam(ConfigReader.getProperty("morty.character.json.key.name"), name)
+                .get(ConfigReader.getProperty("morty.endpoint.character"))
                 .then();
     }
 
-    public ValidatableResponse getEpisodeResponse(int id) {
+    public ValidatableResponse getResponseToEndpoint(int id, String mortyEndpoint) {
         return given()
                 .when()
-                .get(ConfigReader.getProperty("morty_endpoint_episode") + "/" + id)
-                .then();
-    }
-
-    public ValidatableResponse getCharacterByIdResponse(int id) {
-        return given()
-                .when()
-                .get(ConfigReader.getProperty("morty_endpoint_character") + "/" + id)
+                .get(mortyEndpoint + "/" + id)
                 .then();
     }
 }

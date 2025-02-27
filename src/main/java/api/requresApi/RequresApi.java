@@ -12,7 +12,7 @@ public class RequresApi extends BaseRequresApi {
             return given()
                     .when()
                     .body(user)
-                    .post(ConfigReader.getProperty("requres_endpoint_users"))
+                    .post(ConfigReader.getProperty("requres.endpoint.users"))
                     .then();
         }
 }

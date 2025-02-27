@@ -6,7 +6,7 @@ import utils.ConfigReader;
 
 public class BaseMortyApi {
     public BaseMortyApi() {
-        RestAssured.requestSpecification = Specifications.baseRequestSpec(ConfigReader.getProperty("morty_url"));
+        RestAssured.requestSpecification = Specifications.baseRequestSpec(ConfigReader.getProperty("morty.url"));
         RestAssured.responseSpecification = Specifications.baseResponseSpecSuccess();
     }
 }

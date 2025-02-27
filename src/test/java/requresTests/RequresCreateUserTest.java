@@ -15,12 +15,12 @@ public class RequresCreateUserTest {
     @Test
     @DisplayName("Проверка на создание пользователя и валидность данных")
     public void checkCreateNewUser() {
-        User user = requresSteps.readFromFileUser(ConfigReader.getProperty("requres_path_json"));
-        user.setName(ConfigReader.getProperty("requres_name_user"));
-        user.setJob(ConfigReader.getProperty("requres_job_user"));
+        User user = requresSteps.readFromFileUser(ConfigReader.getProperty("requres.path.json"));
+        user.setName(ConfigReader.getProperty("requres.name.user"));
+        user.setJob(ConfigReader.getProperty("requres.job.user"));
         User newUser = requresSteps.createNewUser(user);
 
-        Assertions.assertEquals(HttpStatus.SC_CREATED, Integer.parseInt(ConfigReader.getProperty("requres_status")));
+        Assertions.assertEquals(HttpStatus.SC_CREATED, Integer.parseInt(ConfigReader.getProperty("requres.status")));
         Assertions.assertEquals(user.getName(), newUser.getName());
         Assertions.assertEquals(user.getJob(), newUser.getJob());
 

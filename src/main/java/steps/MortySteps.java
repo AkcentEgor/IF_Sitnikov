@@ -18,7 +18,7 @@ public class MortySteps {
                 .extract()
                 .body()
                 .jsonPath()
-                .getList(ConfigReader.getProperty("morty_json_get_list_path"), Character.class);
+                .getList(ConfigReader.getProperty("morty.json.get.list.path"), Character.class);
         return characters.get(0);
     }
 
@@ -28,8 +28,8 @@ public class MortySteps {
         return Integer.parseInt(lastEpisodeUrl.substring(lastEpisodeUrl.lastIndexOf("/") + 1));
     }
 
-    public int getLastCharacterInEpisode(int id) {
-        Episode episode = mortyApi.getEpisodeResponse(id)
+    public int getLastCharacterInEpisode(int id, String mortyEndpoint) {
+        Episode episode = mortyApi.getResponseToEndpoint(id, mortyEndpoint)
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
                 .body()
@@ -39,8 +39,8 @@ public class MortySteps {
         return Integer.parseInt(lastCharactersUrl.substring(lastCharactersUrl.lastIndexOf("/") + 1));
     }
 
-    public Character getCharacterById(int id) {
-        return mortyApi.getCharacterByIdResponse(id)
+    public Character getCharacterById(int id, String mortyEndpoint) {
+        return mortyApi.getResponseToEndpoint(id, mortyEndpoint)
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
                 .body()

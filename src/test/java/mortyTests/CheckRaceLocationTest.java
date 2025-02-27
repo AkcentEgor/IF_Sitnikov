@@ -15,10 +15,10 @@ public class CheckRaceLocationTest {
     @Test
     @DisplayName("Негативный тест на проверку соответствия расы и локации персонажей")
     public void checkRaceLocation() {
-        Character morty = mortySteps.getCharacterByName(ConfigReader.getProperty("morty_name"));
-        int lastEpisodeId = mortySteps.getLastEpisodeUrl(ConfigReader.getProperty("morty_name"));
-        int lastCharacterId = mortySteps.getLastCharacterInEpisode(lastEpisodeId);
-        Character lastCharacter = mortySteps.getCharacterById(lastCharacterId);
+        Character morty = mortySteps.getCharacterByName(ConfigReader.getProperty("morty.name"));
+        int lastEpisodeId = mortySteps.getLastEpisodeUrl(ConfigReader.getProperty("morty.name"));
+        int lastCharacterId = mortySteps.getLastCharacterInEpisode(lastEpisodeId, ConfigReader.getProperty("morty.endpoint.episode"));
+        Character lastCharacter = mortySteps.getCharacterById(lastCharacterId, ConfigReader.getProperty("morty.endpoint.character"));
 
         Assertions.assertFalse(Boolean.parseBoolean(morty.getSpecies()+morty.getLocation()), lastCharacter.getSpecies()+lastCharacter.getLocation());
     }
