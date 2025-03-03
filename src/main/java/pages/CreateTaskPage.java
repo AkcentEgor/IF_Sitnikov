@@ -3,6 +3,7 @@ package pages;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import java.time.Duration;
 
@@ -27,6 +28,7 @@ public class CreateTaskPage {
     private final SelenideElement iframe = $x("//iframe[@id='mce_0_ifr']").as("Окно создания задачи");
     private final SelenideElement textArea = $x("//body[@id='tinymce']").as("Текстовое поле 'Окружение'");
 
+    @Step("Создать задачу для проверки счётчика")
     public TasksPage createTask(String themeText) {
         themeArea.shouldBe(Condition.visible)
                 .click();
@@ -35,10 +37,12 @@ public class CreateTaskPage {
         return Selenide.page(TasksPage.class);
     }
 
+    @Step("Нажать кнопку 'Создать'")
     public void clickOnButtonCreate() {
             createButtonSubmit.click();
         }
 
+    @Step("Создать новый баг с описанием")
     public TasksPage createNewBug(String themeBugText, String descpiption) {
         iframe.shouldBe(Condition.visible, Duration.ofSeconds(10));
         Selenide.switchTo().frame(iframe);

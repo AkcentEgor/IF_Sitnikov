@@ -2,6 +2,7 @@ package pages;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 
 import java.time.Duration;
 import java.util.List;
@@ -17,10 +18,12 @@ public class OneTaskPage {
     private final SelenideElement businessButton = $x("//a[@id='opsbar-transitions_more']").as("Кнопка 'Бизнес-процесс'");
     private final SelenideElement doneButton =  $x("//aui-item-link[@id='action_id_31']").as("Кнопка 'Выполнено'");
 
+    @Step("Получить информацию о состоянии задачи")
     public List<String> checkStatusTask() {
         return List.of(statusTask.getText(), readVersionTask.getText());
     }
 
+    @Step("Перевести задачу в состояние 'В РАБОТЕ'")
     public OneTaskPage inWorkTask() {
         workButton.shouldBe(Condition.visible, Duration.ofSeconds(10))
                 .click();
@@ -28,6 +31,7 @@ public class OneTaskPage {
         return this;
     }
 
+    @Step("Перевести задачу в состояние 'ГОТОВО'")
     public OneTaskPage doneBusinessTask() {
         businessButton.click();
         doneButton.click();
