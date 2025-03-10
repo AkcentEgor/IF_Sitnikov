@@ -1,0 +1,7 @@
+# 💡 Игнорируем файлы сборки Maven
+target/
+
+# 💡 Локальные настройки IntelliJ IDEA
+.idea/
+build
+.allure
