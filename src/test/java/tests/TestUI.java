@@ -8,7 +8,7 @@ import webHooks.WebHooks;
 import java.util.List;
 
 
-public class TestHW3 extends WebHooks {
+public class TestUI extends WebHooks {
 
     private String firstNumberTask, secondNumberTask;
 
