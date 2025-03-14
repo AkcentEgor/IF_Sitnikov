@@ -15,7 +15,7 @@
 ## Установка
 
 1. Склонируйте репозиторий: `git clone https://github.com/AkcentEgor/IF_Sitnikov.git`
-2. Перейдите в ветку `IF_HW6`
+2. Перейдите в ветку `HWF_UI`
 3. Установите `maven`
 
 ## Сценарий
